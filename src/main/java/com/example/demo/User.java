@@ -1,18 +1,23 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 //you have to create database manually and the table creation is the thing which can be taking care by the
 //hibernate
 @Entity // it is used to tell hibermnate conssidered this entity to make a table of it and column for its all the attribute
-@Table(name="info") // give table name to user-info
+@Table(name="details",uniqueConstraints=@UniqueConstraint(columnNames= {"userId","userName","userMobNo","userStudy"})) // give table name to user-info
 public class User {
-    @Id //it is used to make a primary key
+    @Id
+    @Column(name="userId")
     private int userId;
+
+    @Column(name="userName")
     private String userName;
+
+    @Column(name="userMobNo")
     private String userMobNo;
+
+    @Column(name="userStudy")
     private String userStudy;
 
     //always make a default constructor because spring boot use it make a beans object there for
